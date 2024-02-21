@@ -1,72 +1,50 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import { useScrollTrigger, Slide, AppBar, Toolbar, Typography, CssBaseline } from '@mui/material';
-import Box from '@mui/material/Box';
+import { AppBar, Toolbar, Typography, CssBaseline } from '@mui/material';
 import Container from '@mui/material/Container';
 
-function HideOnScroll(props) {
-  const { children, window } = props;
-  const trigger = useScrollTrigger({
-    target: window ? window() : undefined,
-    disableHysteresis: true,
-    threshold: 0,
-  });
-
-  return (
-    <Slide appear={false} direction="down" in={!trigger}>
-      {children}
-    </Slide>
-  );
-}
-
-HideOnScroll.propTypes = {
-  children: PropTypes.element.isRequired,
-  window: PropTypes.func,
-};
-
-export default function HeaderSecond(props) {
-  const [isSticky, setIsSticky] = React.useState(true);
+export default function HeaderSecond() {
+  const [prevScrollPos, setPrevScrollPos] = React.useState(0);
+  const [isVisible, setIsVisible] = React.useState(true);
 
   React.useEffect(() => {
     function handleScroll() {
-      const scrollTop = window.pageYOffset;
-      if (scrollTop > 0 && isSticky) {
-        setIsSticky(false);
-      } else if (scrollTop === 0 && !isSticky) {
-        setIsSticky(true);
-      }
+      const currentScrollPos = window.pageYOffset;
+      setIsVisible(prevScrollPos > currentScrollPos || currentScrollPos === 0);
+      setPrevScrollPos(currentScrollPos);
     }
 
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [isSticky]);
+  }, [prevScrollPos]);
 
   return (
     <React.Fragment>
       <CssBaseline />
-      <HideOnScroll {...props}>
-        <AppBar position={isSticky ? 'sticky' : 'absolute'}>
-          <Toolbar>
-            <Typography variant="h6" component="div">
-              Scroll to hide App bar
-            </Typography>
-          </Toolbar>
-        </AppBar>
-      </HideOnScroll>
+      <AppBar
+        position="sticky"
+        style={{
+          backgroundColor: 'transparent',
+          boxShadow: isVisible ? 'none' : '0px 4px 4px rgba(0, 0, 0, 0.1)',
+        }}
+      >
+        <Toolbar>
+          <Typography sx={{color:"red"}} variant="h6" component="div">
+            Scroll to hide App bar
+          </Typography>
+        </Toolbar>
+      </AppBar>
       <Toolbar />
       <Container>
-        <Box sx={{ my: 2 }}>
-          {[...new Array(19)]
-            .map(
-              () => `Cras mattis consectetur purus sit amet fermentum.
-Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`,
-            )
-            .join('\n')}
-        </Box>
+        {[...new Array(19)]
+          .map(
+            () => `Cras mattis consectetur purus sit amet fermentum.
+            Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+            Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`,
+          )
+          .join('\n')}
       </Container>
     </React.Fragment>
   );
