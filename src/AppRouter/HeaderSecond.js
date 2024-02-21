@@ -13,7 +13,7 @@ function HideOnScroll(props) {
   });
 
   return (
-    <Slide appear={false} direction="down" in={trigger}>
+    <Slide appear={false} direction="down" in={!trigger}>
       {children}
     </Slide>
   );
@@ -25,11 +25,29 @@ HideOnScroll.propTypes = {
 };
 
 export default function HeaderSecond(props) {
+  const [isSticky, setIsSticky] = React.useState(true);
+
+  React.useEffect(() => {
+    function handleScroll() {
+      const scrollTop = window.pageYOffset;
+      if (scrollTop > 0 && isSticky) {
+        setIsSticky(false);
+      } else if (scrollTop === 0 && !isSticky) {
+        setIsSticky(true);
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isSticky]);
+
   return (
     <React.Fragment>
       <CssBaseline />
       <HideOnScroll {...props}>
-        <AppBar>
+        <AppBar position={isSticky ? 'sticky' : 'absolute'}>
           <Toolbar>
             <Typography variant="h6" component="div">
               Scroll to hide App bar
@@ -40,7 +58,7 @@ export default function HeaderSecond(props) {
       <Toolbar />
       <Container>
         <Box sx={{ my: 2 }}>
-          {[...new Array(12)]
+          {[...new Array(19)]
             .map(
               () => `Cras mattis consectetur purus sit amet fermentum.
 Cras justo odio, dapibus ac facilisis in, egestas eget quam.
