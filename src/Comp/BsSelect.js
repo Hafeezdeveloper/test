@@ -9,11 +9,11 @@ export default function BsSelect(props) {
   
   return (
     <div>
-      <FormControl variant="filled" sx={{ m: 1, minWidth: 120 }}>
+      <FormControl sx={{width:"100%"}}>
         <InputLabel id="demo-simple-select-filled-label">{name}</InputLabel>
         <Select
-          labelId="demo-simple-select-filled-label"
-          id="demo-simple-select-filled"
+         labelId="demo-simple-select-label"
+         id="demo-simple-select"
           value={value}
           onChange={onChange}
         >

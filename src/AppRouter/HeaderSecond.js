@@ -27,43 +27,26 @@ export default function HeaderSecond() {
                 style={{
                     backgroundColor: !isVisible ? "#FFFFFF" : '#f5f6f0',
                     boxShadow: isVisible ? 'none' : '0px 4px 4px rgba(0, 0, 0, 0.1)',
-                    transition: 'all 0.3s ease-in-out' // Add transition for smooth color change
                 }}
             >
-                <Toolbar className='py-3' sx={{
-                    justifyContent: "space-evenly",
-                    transform: isVisible ? 'translateY(0)' : 'translateY(-100px)',
-                    transition: 'transform 0.3s ease-in-out' // Add transition for smooth animation
-                }}>
+                <Toolbar className='py-3'  sx={{justifyContent:"space-evenly"}}>
                     <Box>
-                        <img src={require("../assest/mainlogo.png")} style={{ width: "122px", transition: 'all 0.3s ease-in-out' }} />
+                    <img src={require("../assest/mainlogo.png")} style={{ width: "122px" }} />
                     </Box>
                     <Box className="d-flex">
-                        {["Writing", "Editing", "Design", "Publishing", "Marketing", "AudioBooks", "About", "Blog", "FAQS"].map((x, i) => {
-                            return (
-                                <Typography key={i} className='px-4' sx={{
-                                    color: "#020f14",
-                                    fontSize: "15px",
-                                    '&:hover': { color: '#ff5037', cursor: 'pointer' },
-                                    transition: 'all 0.3s ease-in-out' // Add transition for smooth color change on hover
-                                }} variant="h6" component="div">
-                                    {x}
-                                </Typography>
-                            )
-                        })}
+                    {["Writing", "Editing", "Design", "Publishing", "Marketing", "AudioBooks", "About", "Blog", "FAQS"].map((x, i) => {
+                        return (
+                            <Typography className='px-4' sx={{ color: "#020f14", fontSize: "15px", '&:hover': { color: '#ff5037', cursor: 'pointer'  } }} variant="h6" component="div">
+                                {x}
+                            </Typography>
+                        )
+                    })}
                     </Box>
                 </Toolbar>
             </AppBar>
             <Toolbar />
             <Container>
-                {[...new Array(19)]
-                    .map(
-                        () => `Cras mattis consectetur purus sit amet fermentum.
-            Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-            Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`,
-                    )
-                    .join('\n')}
+             
             </Container>
         </React.Fragment>
     );

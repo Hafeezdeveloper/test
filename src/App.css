@@ -1,9 +1,115 @@
+.space-grotesk {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: normal;
+}
 
 
-@media   (max-width:400px) and (min-width:250px) {
+@media (max-width:400px) and (min-width:250px) {
   #centerUpperHeader {
     display: flex !important;
     justify-content: center !important;
     text-align: center;
   }
+}
+
+.input {
+  width: 100%;
+  background: 0;
+  color: gray;
+  border: 1px solid gray;
+  padding: 14px 15px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+.file-upload-container {
+  position: relative;
+}
+
+.custom-file-input {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.labelfile {
+  width: 100%;
+  background: 0 0;
+  cursor: pointer;
+  color: gray;
+  border: 1px solid gray;
+  padding: 14px 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  height: 52px;
+}
+
+.input2 {
+  width: calc(100% - 40px); /* Adjust width to accommodate the file icon */
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  right: 10;
+  height: 100%;
+  cursor: pointer;
+}
+
+.file-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  color: #ff5037;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Style for input when file is selected (optional) */
+.input:valid + .file-icon {
+  color: green; /* Change color to indicate file selection */
+}
+
+
+
+.fixedIcon {
+  position: absolute;
+  bottom: 50%;
+  right: 0px; /* You can adjust this value based on your preference */
+  transform: translateY(50%);
+  z-index: 999; /* Ensure the icon appears above other content */
+}
+
+.icon {
+  font-size: 36px; /* Adjust the size of the icon as needed */
+  cursor: pointer;
+}
+
+/* Updated styles for the fixed icon */
+.fixedIcon .icon {
+  color: #ff5037; /* Set icon color to orange */
+  font-size: 40px; /* Increase icon size */
+}
+
+/* Added styles for the phone number */
+.phoneNumber {
+  display: none; /* Initially hide the phone number */
+  color: #ff5037; /* Set color to orange */
+  font-size: 18px; /* Adjust font size */
+}
+
+.fixedIcon:hover .phoneNumber {
+  display: inline; /* Show phone number on hover */
+}
+
+.cta-btn {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.37px;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 12px 26px;
+  background-color: #ff5037;
+  text-align: center;
+  display: inline-block;
+  position: relative;
 }
