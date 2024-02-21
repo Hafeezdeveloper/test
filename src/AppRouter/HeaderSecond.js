@@ -27,20 +27,30 @@ export default function HeaderSecond() {
                 style={{
                     backgroundColor: !isVisible ? "#FFFFFF" : '#f5f6f0',
                     boxShadow: isVisible ? 'none' : '0px 4px 4px rgba(0, 0, 0, 0.1)',
+                    transition: 'all 0.3s ease-in-out' // Add transition for smooth color change
                 }}
             >
-                <Toolbar className='py-3'  sx={{justifyContent:"space-evenly"}}>
+                <Toolbar className='py-3' sx={{
+                    justifyContent: "space-evenly",
+                    transform: isVisible ? 'translateY(0)' : 'translateY(-100px)',
+                    transition: 'transform 0.3s ease-in-out' // Add transition for smooth animation
+                }}>
                     <Box>
-                    <img src={require("../assest/mainlogo.png")} style={{ width: "122px" }} />
+                        <img src={require("../assest/mainlogo.png")} style={{ width: "122px", transition: 'all 0.3s ease-in-out' }} />
                     </Box>
                     <Box className="d-flex">
-                    {["Writing", "Editing", "Design", "Publishing", "Marketing", "AudioBooks", "About", "Blog", "FAQS"].map((x, i) => {
-                        return (
-                            <Typography className='px-4' sx={{ color: "#020f14", fontSize: "15px", '&:hover': { color: '#ff5037', cursor: 'pointer'  } }} variant="h6" component="div">
-                                {x}
-                            </Typography>
-                        )
-                    })}
+                        {["Writing", "Editing", "Design", "Publishing", "Marketing", "AudioBooks", "About", "Blog", "FAQS"].map((x, i) => {
+                            return (
+                                <Typography key={i} className='px-4' sx={{
+                                    color: "#020f14",
+                                    fontSize: "15px",
+                                    '&:hover': { color: '#ff5037', cursor: 'pointer' },
+                                    transition: 'all 0.3s ease-in-out' // Add transition for smooth color change on hover
+                                }} variant="h6" component="div">
+                                    {x}
+                                </Typography>
+                            )
+                        })}
                     </Box>
                 </Toolbar>
             </AppBar>
