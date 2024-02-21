@@ -1,8 +1,7 @@
 import logo from './logo.svg';
-import './App.css';
+import  './App.css'
 import AppRouter from './AppRouter/AppRouter';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 function App() {
   return (
  <>

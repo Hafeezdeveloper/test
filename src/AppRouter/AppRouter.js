@@ -13,7 +13,7 @@ const AppRouter = () => {
         <Route path='/' element={<MainDashboard />} /> */}
       </Routes>
       </BrowserRouter>
-    </div>
+    </div>  
   )
 }
 

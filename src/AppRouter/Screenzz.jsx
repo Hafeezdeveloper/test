@@ -1,10 +1,13 @@
 import React from 'react'
 import HeaderFirst from './HeaderFirst'
+import HeaderSecond from './HeaderSecond'
 
 const Screenzz = () => {
   return (
-    <div>
+    <div >
       <HeaderFirst />
+      <HeaderSecond />
+
     </div>
   )
 }
